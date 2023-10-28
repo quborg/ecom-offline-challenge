@@ -1,0 +1,192 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "2.0.0",
+    "contact": {
+      "name": "API Support",
+      "email": "miloud.laftah@gmail.com"
+    },
+    "title": "REST API",
+    "description": ""
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "cooktime",
+      "description": "Cooktime calculation for a given Ramadan day"
+    },
+    {
+      "name": "suggest",
+      "description": "Suggest some dishes for a choosen Ramadan day"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/cooktime": {
+      "get": {
+        "tags": [
+          "cooktime"
+        ],
+        "summary": "This is the Ramadan foutour cooktime calculation API.",
+        "description": "This API response tells us service is up or down.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "day",
+            "in": "Hijri month",
+            "description": "An integer number representing Ramadan day",
+            "required": true,
+            "type": "int",
+            "format": "0 or 01"
+          },
+          {
+            "name": "ingredient",
+            "in": "kitchen",
+            "description": "An ingredient name like carrot and chicken",
+            "required": true,
+            "type": "string",
+            "format": "abcd"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Service is",
+            "schema": {
+              "$ref": "#/definitions/successResponse"
+            }
+          },
+          "400": {
+            "description": "Parameters issue",
+            "schema": {
+              "$ref": "#/definitions/errorResponse.400"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errorResponse.404"
+            }
+          },
+          "500": {
+            "description": "Server Issue",
+            "schema": {
+              "$ref": "#/definitions/errorResponse.500"
+            }
+          }
+        }
+      }
+    },
+    "/suggest": {
+      "get": {
+        "tags": [
+          "suggest"
+        ],
+        "summary": "This is the Ramadan dishes suggestion API.",
+        "description": "This API response tells us service is up or down.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "day",
+            "in": "Hijri month",
+            "description": "An integer number representing Ramadan day",
+            "required": true,
+            "type": "int",
+            "format": "0 or 01"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Service is",
+            "schema": {
+              "$ref": "#/definitions/successResponse"
+            }
+          },
+          "400": {
+            "description": "Parameters issue",
+            "schema": {
+              "$ref": "#/definitions/errorResponse.400"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errorResponse.404"
+            }
+          },
+          "500": {
+            "description": "Server Issue",
+            "schema": {
+              "$ref": "#/definitions/errorResponse.500"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "successResponse": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Veggie Couscous"
+          },
+          "ingredients": {
+            "type": "array",
+            "example": [
+              "Semolina",
+              "Potatoe",
+              "Carrot",
+              "Onion",
+              "Tomato paste"
+            ],
+            "items": {
+              "type": "string"
+            }
+          },
+          "cooktime": {
+            "type": "string",
+            "example": "30 minutes before Asr"
+          }
+        }
+      }
+    },
+    "errorResponse.400": {
+      "type": "string",
+      "example": "Needs argument X"
+    },
+    "errorResponse.500": {
+      "type": "string",
+      "example": "The server encountered an unexpected condition that prevented it from fulfilling the request"
+    },
+    "errorResponse.404": {
+      "type": "string",
+      "example": "The server cannot find the requested resource"
+    }
+  }
+}

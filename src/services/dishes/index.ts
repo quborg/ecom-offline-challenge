@@ -14,7 +14,7 @@ export const getDishByName = async (name: string) => {
 }
 
 export const getDishesRandom = async () => {
-  let randomDishes: any[] = [];
+  const randomDishes: any[] = [];
   const dishes = await axios.get("http://localhost:3000/dishes").then(res => res.data);
   for (let index = 0; index < 5; index++) {
     const r = Math.floor(Math.random() * dishes.length);
@@ -77,13 +77,13 @@ export const getCooktime = (start: string, end: string, duration: number) => {
  */
 export const suggestedDishes = async (dayName: string) => {
   const dishes: any[] = [];
-  let uniqStack: any[] = [];
+  const uniqStack: any[] = [];
 
   if (dayName === 'Thursday') return getThursdayDishes();
 
   const specialDishes = await getSpecialDishes(dayName);
   const randomDishes = await getDishesRandom();
-  
+
   [...specialDishes, ...randomDishes].forEach((item) => {
     if (item.name && !uniqStack.includes(item.name)) {
       uniqStack.push(item.name);

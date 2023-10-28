@@ -7,11 +7,8 @@ const router = Router();
 /**
  * Serve dishes.json file on "localhost:3000/dishes"
  */
-router.get('/dishes', (req, res) => {
-  fs.readFile('src/routes/dishes/dishes.json', (err, json) => {
-    let obj = JSON.parse(json.toString());
-    res.json(obj);
-  });
+router.get('/dishes', () => {
+  fs.readFile('src/routes/dishes/dishes.json', (err, json) => JSON.parse(json.toString()));
 });
 
 
