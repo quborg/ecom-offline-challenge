@@ -17,6 +17,8 @@ npm start
 - Linting: `npm run lint`
 - Build: `npm run build; npm run serve`
 - Generate Swagger doc: `npm run swagger-autogen`
+- Test: `npm test`
+  Note for testing, the express server must run to do a test
 
 #### Swagger Documentation
 
