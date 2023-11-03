@@ -40,7 +40,7 @@ export const getSpecialDishes = async (dayName: string) => {
       specialDishes = [await getDishByName(dishName)];
       break;
     case 'Monday':
-      if (d < 0.9) // 90% chance to get chiken
+      if (d < 0.9) // 90% chance to get chicken
         specialDishes = await getDishesByIngredient(mondayIngredient);
       break;
 

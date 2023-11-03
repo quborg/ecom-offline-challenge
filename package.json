@@ -9,7 +9,7 @@
     "serve": "node dist/index.js",
     "lint": "npx eslint ./src --fix",
     "swagger-autogen": "node ./docs/swagger.js",
-    "test": "ts-mocha --timeout 10000 -p ./tsconfig.json ./src/tests/*.spec.ts"
+    "test": "ts-mocha -p ./tsconfig.json ./src/tests/*.spec.ts"
   },
   "author": "",
   "license": "ISC",
